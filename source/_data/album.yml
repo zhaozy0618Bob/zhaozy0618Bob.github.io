@@ -1,0 +1,11 @@
+- name: Campus
+  cover: /img/album/campus.jpg
+  photos:
+    - /img/album/campus1.jpg
+    - /img/album/campus2.jpg
+
+- name: Travel
+  cover: /img/album/travel.jpg
+  photos:
+    - /img/album/travel1.jpg
+    - /img/album/travel2.jpg

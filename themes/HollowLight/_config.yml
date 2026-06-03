@@ -1,0 +1,67 @@
+# ===================================
+# HollowLight — Hexo Theme Config
+# ===================================
+
+# 博主信息
+author:
+  name: "ZHEYAN ZHAO"
+  avatar: /img/avatar.png
+  bio: "BSc in Agricultural and Forestry Economics and Management"
+  level: 1
+  credit_score: 900
+
+# 导航菜单
+menu:
+  推送: /
+  归档: /archives/
+  标签: /tags/
+  相册: /album/
+  伙伴: /friends/
+  关于: /about/
+
+# 社交链接
+social:
+  github: "https://github.com/zhaozy0618"
+  twitter: ""
+  weibo: ""
+  email: "zhaozy0618@outlook.com"
+
+# 背景图
+background: /img/bg.png
+
+# 相册配置
+album:
+  data: source/_data/album.yml
+  columns: 4
+
+# 友链数据文件
+friends_data: source/_data/friends.yml
+
+# 代码高亮
+highlight:
+  theme: one-dark
+
+# 评论
+comment:
+  enable: false
+  type: ""
+
+# 页脚
+footer:
+  since: 2024
+  icp: ""
+
+# 首页幕布
+curtain:
+  enable: true
+  background:
+    type: image
+    url: https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80
+  typewriter:
+    - "ZHEYAN ZHAO"
+    - "International Agricultural Economics"
+    - "Data Analysis & Research"
+
+# 本地搜索
+search:
+  enable: true

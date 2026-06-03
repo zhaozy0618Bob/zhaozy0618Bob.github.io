@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="<%- url_for('/css/tag.css') %>">
+
+<%
+  /* Collect all tags, sort by post count descending */
+  var allTags = [];
+  site.tags.each(function (tag) {
+    if (tag.length) allTags.push(tag);
+  });
+  allTags.sort(function (a, b) { return b.length - a.length; });
+%>
+
+<div class="tags-wrap">
+
+  <div class="tags-page-title">
+    TAGS &mdash; <span><%= allTags.length %></span> tags
+  </div>
+
+  <% if (allTags.length) { %>
+  <div class="tag-sphere-wrap" id="tag-sphere-wrap">
+    <div class="tag-sphere" id="tag-sphere"></div>
+  </div>
+  <% } %>
+
+</div>
+
+<script>
+window.__HL_TAGS__ = <%- JSON.stringify(allTags.map(function(tag) {
+  return { name: tag.name, url: url_for(tag.path), count: tag.length };
+})) %>;
+</script>
+<script src="<%- url_for('/js/tag-sphere.js') %>"></script>

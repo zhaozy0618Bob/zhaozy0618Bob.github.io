@@ -1,0 +1,81 @@
+<%
+  /* ---- Safe defaults for all theme variables ---- */
+  var author      = theme.author || {};
+  var authorName  = author.name || config.author || '传奇绳匠';
+  var authorAvatar = author.avatar || '/img/avatar.png';
+  var authorBio   = author.bio || '';
+
+  /* Menu items */
+  var menuItems   = theme.menu || {};
+  var currentPath = page.path || '';
+  var isHomePage  = is_home();
+
+  /* URL bar */
+  var siteUrl = config.url || '';
+  var urlFull = siteUrl.replace(/\/+$/, '') + '/';
+
+  /* Pre-hide header when curtain fills the viewport (avoids FOUC black bar) */
+  var hasCurtain = (is_home() && theme.curtain && theme.curtain.enable);
+%>
+  <header<%- hasCurtain ? ' class="header--curtain-hidden"' : '' %>>
+  <!-- Personal Info Card -->
+  <a href="<%- url_for('/') %>" class="personal">
+    <span class="avatar-link">
+      <img
+        src="<%- url_for(authorAvatar) %>"
+        alt="<%= authorName %>"
+        class="avatar"
+        onerror="this.onerror=null;this.style.background='#333';"
+      >
+    </span>
+    <span class="info-bar">
+      <span class="info-bio"><%= authorBio %></span>
+      <span class="info-url">
+        <span class="info-url-lock">
+          <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="6" width="10" height="7" rx="1.5" fill="currentColor"/>
+            <path d="M3 6V4a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          </svg>
+        </span>
+        <%= urlFull %>
+      </span>
+    </span>
+  </a>
+
+  <!-- Navigation Tabs -->
+  <div class="tabs">
+    <% for (var name in menuItems) { %>
+      <%
+        var menuPath = menuItems[name];
+        var isActive = false;
+
+        if (menuPath === '/' || menuPath === '') {
+          /* Home tab: active on index / home pages */
+          isActive = isHomePage;
+        } else {
+          /* Other tabs: normalize and compare paths */
+          var menuNorm = url_for(menuPath).replace(/\/+$/, '');
+          var pageNorm = url_for(currentPath)
+            .replace(/index\.html$/, '')
+            .replace(/\/+$/, '');
+          isActive = (menuNorm === pageNorm) ||
+                     (pageNorm.indexOf(menuNorm) === 0 && menuNorm.length > 1);
+        }
+      %>
+      <span class="tab<%= isActive ? ' choiced' : '' %>">
+        <a href="<%- url_for(menuPath) %>"><%= name %></a>
+      </span>
+    <% } %>
+  </div>
+
+  <!-- Search Button -->
+  <% if (theme.search && theme.search.enable) { %>
+  <button class="hl-search-btn" id="hl-search-btn"
+          title="搜索 (Ctrl+K)" aria-label="搜索">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
+  <% } %>
+</header>
