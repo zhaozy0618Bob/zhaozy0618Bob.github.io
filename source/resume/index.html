@@ -1,7 +1,7 @@
 ---
 title: 简历
 date: 2026-06-03
-type: page
+layout: resume
 ---
 
 <div class="resume-container">
@@ -130,10 +130,9 @@ type: page
 
 .a4-page {
   width: 210mm;
-  min-height: 297mm;
-  max-height: 297mm;
-  background: white;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  height: 297mm;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
   display: grid;
   grid-template-columns: 260px 1fr;
   overflow: hidden;
@@ -141,7 +140,7 @@ type: page
 
 .sidebar {
   background: #1e3a5f;
-  color: white;
+  color: #fff;
   padding: 32px 24px;
 }
 
@@ -150,18 +149,21 @@ type: page
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  background: white;
+  background: #fff;
   padding: 3px;
   margin-bottom: 16px;
   display: block;
 }
 
 .name {
-  font-size: 1.4rem;
-  font-weight: 800;
+  font-size: 1.4rem !important;
+  font-weight: 800 !important;
   letter-spacing: -0.5px;
   margin-bottom: 6px;
   line-height: 1.2;
+  color: #fff !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
 .tagline {
@@ -169,11 +171,10 @@ type: page
   opacity: 0.85;
   margin-bottom: 24px;
   line-height: 1.4;
+  color: rgba(255,255,255,0.85);
 }
 
-.sidebar-section {
-  margin-bottom: 20px;
-}
+.sidebar-section { margin-bottom: 20px; }
 
 .sidebar-title {
   font-size: 0.65rem;
@@ -182,13 +183,26 @@ type: page
   letter-spacing: 1.5px;
   margin-bottom: 8px;
   opacity: 0.7;
+  color: rgba(255,255,255,0.7) !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
 .contact-list {
-  list-style: none;
+  list-style: none !important;
   font-size: 0.72rem;
   line-height: 1.8;
+  padding: 0 !important;
+  margin: 0 !important;
 }
+
+.contact-list li {
+  padding: 0 !important;
+  margin: 0 !important;
+  color: rgba(255,255,255,0.9);
+}
+
+.contact-list li::before { display: none !important; }
 
 .skill-tags {
   display: flex;
@@ -197,34 +211,31 @@ type: page
 }
 
 .skill-tag {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255,255,255,0.15);
   padding: 3px 8px;
   border-radius: 3px;
   font-size: 0.65rem;
+  color: rgba(255,255,255,0.9);
 }
 
 .main-content {
   padding: 32px 28px;
 }
 
-.section {
-  margin-bottom: 18px;
-}
+.section { margin-bottom: 18px; }
 
 .section-title {
   font-size: 0.7rem;
   font-weight: 700;
-  color: #1e3a5f;
+  color: #1e3a5f !important;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   margin-bottom: 10px;
   padding-bottom: 6px;
-  border-bottom: 2px solid #1e3a5f;
+  border-bottom: 2px solid #1e3a5f !important;
 }
 
-.item {
-  margin-bottom: 12px;
-}
+.item { margin-bottom: 12px; }
 
 .item-header {
   display: flex;
@@ -236,6 +247,7 @@ type: page
 .item-title {
   font-size: 0.85rem;
   font-weight: 700;
+  color: #111827;
 }
 
 .item-date {
@@ -250,28 +262,29 @@ type: page
   margin-bottom: 4px;
 }
 
-.item-detail {
-  font-size: 0.75rem;
-  color: #4b5563;
-}
+.item-detail { font-size: 0.75rem; color: #4b5563; }
 
 .exp-list {
-  list-style: none;
+  list-style: none !important;
   font-size: 0.75rem;
   color: #374151;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .exp-list li {
   margin-bottom: 2px;
-  padding-left: 12px;
+  padding-left: 12px !important;
   position: relative;
+  color: #374151;
 }
 
 .exp-list li::before {
-  content: '→';
+  content: '→' !important;
   position: absolute;
   left: 0;
   color: #1e3a5f;
+  background: none !important;
 }
 
 .awards-grid {
@@ -300,18 +313,20 @@ type: page
   line-height: 1.5;
 }
 
-.bold {
-  font-weight: 700;
-}
+.bold { font-weight: 700; }
 
 @media print {
-  .resume-container {
-    padding: 0;
-  }
-  
+  .resume-container { padding: 0; }
+  .a4-page { box-shadow: none; margin: 0; }
+}
+
+@media (max-width: 800px) {
   .a4-page {
-    box-shadow: none;
-    margin: 0;
+    width: 100%;
+    height: auto;
+    grid-template-columns: 1fr;
+    min-height: auto;
   }
+  .resume-container { padding: 10px; }
 }
 </style>
